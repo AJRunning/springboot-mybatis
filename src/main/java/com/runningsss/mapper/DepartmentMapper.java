@@ -1,7 +1,9 @@
 package com.runningsss.mapper;
 
-        import com.runningsss.bean.Department;
-        import org.apache.ibatis.annotations.*;
+import com.github.pagehelper.Page;
+import com.runningsss.bean.Department;
+import org.apache.catalina.User;
+import org.apache.ibatis.annotations.*;
 
 /**
  * @author liqings
@@ -10,13 +12,16 @@ package com.runningsss.mapper;
 @Mapper
 public interface DepartmentMapper {
 
+    @Select("select * from department")
+    public Page<Department> list();
+
     @Select("select * from department where id =#{id}")
     public Department getDepartmentById(Integer id);
 
     @Delete("delete from department where id =#{id}")
     public int delete(Integer id);
 
-    @Options(useGeneratedKeys = true,keyProperty = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("insert department (departmentName) values(#{departmentName})")
     public int insert(Department department);
 

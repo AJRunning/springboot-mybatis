@@ -1,7 +1,9 @@
 package com.runningsss.service;
 
+import com.github.pagehelper.Page;
 import com.runningsss.bean.Department;
 import com.runningsss.mapper.DepartmentMapper;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
@@ -125,5 +127,9 @@ public class DepartmentService {
     public Department update(Department department){
         departmentMapper.update(department);
         return  department;
+    }
+
+    public Page<Department> list(){
+        return departmentMapper.list();
     }
 }

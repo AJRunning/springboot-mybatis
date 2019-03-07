@@ -1,5 +1,8 @@
 package com.runningsss.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.runningsss.bean.Department;
 import com.runningsss.mapper.DepartmentMapper;
 import com.runningsss.service.DepartmentService;
@@ -20,6 +23,13 @@ public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
+    @GetMapping("/dept/list")
+    public PageInfo list(Integer pageNum, Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        Page<Department> depts = departmentService.list();
+        PageInfo<Department> pageInfo = new PageInfo <>(depts);
+        return  pageInfo;
+    }
 
     @GetMapping("/dept/{id}")
     public Department getDepartmentById(@PathVariable("id") Integer id){

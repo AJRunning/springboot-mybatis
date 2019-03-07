@@ -8,6 +8,8 @@ import org.springframework.cache.annotation.EnableCaching;
  * @author liqings
  * @date 2018-10-3
  */
+
+
 @EnableCaching
 @SpringBootApplication
 public class SpringbootMybatisApplication {
